@@ -93,7 +93,7 @@ int main( int argc, char* args[] )
         mi_nave->vel_x=NAVE_VEL;
         mi_nave->vel_y=NAVE_VEL;
         mi_nave->misiles= NULL;
-        strcpy(mi_nave->path,"C:/Users/falei/CLionProjects/Proyecto/images/nave.bmp");
+        strcpy(mi_nave->path,"../images/nave.bmp");
 
         // OBJETOS PARA DIBUJAR AL JUGADOR
         SDL_Rect targetRect; //Rectangle to which pacman image will be drawn
@@ -110,7 +110,7 @@ int main( int argc, char* args[] )
         enemigo->x1= 20;
         enemigo->y1 =80;
         enemigo->bmpTexture = NULL;
-        strcpy(enemigo->path,"C:/Users/falei/CLionProjects/Proyecto/images/rosado.bmp");
+        strcpy(enemigo->path,"../images/rosado.bmp");
         enemigo->siguiente = NULL;
         enemigo->flag = true;
         enemigo->misil = NULL;
@@ -123,7 +123,7 @@ int main( int argc, char* args[] )
         muro->siguiente=NULL;
         muro->colisiones=0;
         muro->destruido=false;
-        strcpy(muro->path, "C:/Users/falei/CLionProjects/Proyecto/images/muro.bmp");
+        strcpy(muro->path, "../images/muro.bmp");
         crearMuros(muro);
 
         SDL_Surface* muroSurface = NULL; //To hold bmp image
