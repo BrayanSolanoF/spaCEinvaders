@@ -8,16 +8,15 @@ import EnemiesPackage.Squid;
 public class EnemieFactory implements AbstractFactory{
 
 	@Override
-	public Enemie create(String EnemieType, int posX, int posY, String image, int points) {
-		if("Crab".equals(EnemieType)) {
-		return new Crab(points, points, image, points);
+	public Enemie create(String EnemieType, int points, int Id) {
+		// TODO Auto-generated method stub
+		if ("Crab".equals(EnemieType)) {
+			return new Crab(points, Id);
 		}else if("Octopus".equals(EnemieType)) {
-			return new Octopus(posX, posY, image, points);
+			return new Octopus(points , Id);
 		}else if("Squid".equals(EnemieType)) {
-			return new Squid(points, points, image, points);
+			return new Squid(points , Id);
 		}
 		return null;
-	}
-
-	
+	}	
 }

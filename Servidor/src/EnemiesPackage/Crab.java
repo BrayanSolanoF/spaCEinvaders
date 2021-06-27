@@ -1,36 +1,23 @@
 package EnemiesPackage;
 
 public class Crab implements Enemie{
-
-	private int posX;
-	private int posY;
-	private String image;
+	private int Id;
 	private int points;
-	
-	public int getPosX() {
-		return posX;
+	private boolean state = true;
+			
+	public Crab(int points, int Id) {
+		this.Id = Id;
+		this.points = points;
+	}
+		
+	public int getId() {
+		return Id;
 	}
 
-	public void setPosX(int posX) {
-		this.posX = posX;
+	public void setId(int id) {
+		Id = id;
 	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
+		
 	public int getPoints() {
 		return points;
 	}
@@ -39,19 +26,18 @@ public class Crab implements Enemie{
 		this.points = points;
 	}
 
-	public Crab(int posX, int posY, String image, int points) {
-		this.posX = posX;
-		this.posY = posY;
-		this.image = image;
-		this.points = points;
+	public boolean isState() {
+		return state;
 	}
 
+	public void setState(boolean state) {
+		this.state = state;
+	}
+	
 	@Override
 	public void shoting() {
 		// TODO Auto-generated method stub
-		System.out.println("This is a Crab shoting");
+		System.out.println("This is a Crab " +  Integer.toString(Id) + " shoting");
 	}
-
-
 	
 }
