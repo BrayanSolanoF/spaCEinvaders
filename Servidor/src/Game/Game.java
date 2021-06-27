@@ -13,8 +13,10 @@ public class Game {
 	ArrayList<Enemie> squidList = new ArrayList<Enemie>();
 	ArrayList<Enemie> shipList;
 	ArrayList<Shield> shieldList = new ArrayList<Shield>();
-	String player1;
-	String player2;
+	Player p1;
+	Player p2;
+	String namePlayer1;
+	String namePlayer2;
 	int pointsCrabs;
 	int pointsOctopus;
 	int pointsSquids;
@@ -24,8 +26,8 @@ public class Game {
     
 	public Game(String player1, String player2, int pointsCrabs, int pointsOctopus, int pointsSquids, int pointsShips) {
 		super();
-		this.player1 = player1;
-		this.player2 = player2;
+		this.namePlayer1 = player1;
+		this.namePlayer2 = player2;
 		this.pointsCrabs = pointsCrabs;
 		this.pointsOctopus = pointsOctopus;
 		this.pointsSquids = pointsSquids;
@@ -33,27 +35,35 @@ public class Game {
 	}
 
 	public void createEnemies() {
-		for (int i = 0; i < 22; i++) {
-			if ( i < 7) {
-				crabList.add((Enemie) abstractFactory.create("Crab", pointsCrabs, i+1)); 			
-			}else if ( i >= 7 & i < 15){
-				squidList.add((Enemie) abstractFactory.create("Squid", pointsSquids, i-7));
-			}else if ( i >= 15 & i < 22){
-				OctopusList.add((Enemie) abstractFactory.create("Octopus", pointsOctopus, i-14));
-			}
+		ArrayList<String> enemiesName = new ArrayList<String>();
+		enemiesName.add("Crab");
+		enemiesName.add("Squid");
+		enemiesName.add("Octopus");
+		int index = (int)(Math.random() * enemiesName.size());
+		String e = enemiesName.get(index);
+		if ( e == "Crab") {
+			crabList.add((Enemie) abstractFactory.create("Crab", pointsCrabs, crabList.size()+1)); 			
+		}else if (e == "Squid"){
+			squidList.add((Enemie) abstractFactory.create("Squid", pointsSquids, squidList.size()+1));
+		}else if ( e == "Octopus"){
+			OctopusList.add((Enemie) abstractFactory.create("Octopus", pointsOctopus, OctopusList.size()+1));
+		}else {
+			return;
 		}
-		System.out.println("Done");
 	}
 	
 	public void createShields() {
-		for (int i = 0; i < 4; i++) {
-			shieldList.add(new Shield(6));
-		}
+		int id = shieldList.size()+1;
+		Shield shield = new Shield(id);
+		shieldList.add(shield);
 	}
 	 
 	public void createPlayers() {
-		Player p1 = new Player(3, player1, 1);
-		Player p2 = new Player(3, player2, 2);
+		if(p1 == null) {
+			p1 = new Player(3, namePlayer1, 1);			
+		}else {
+			p2 = new Player(3, namePlayer2, 2);
+		}
 	}
 	
 	public void enemiesShoting() {

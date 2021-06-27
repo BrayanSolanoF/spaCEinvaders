@@ -2,18 +2,18 @@ package Game;
 
 public class Shield {
 	
-	private int lives;
+	private int Id;
 
-	public int getLives() {
-		return lives;
+	public int getId() {
+		return Id;
 	}
 
-	public void setLives(int lives) {
-		this.lives = lives;
+	public void setId(int Id) {
+		this.Id = Id;
 	}
 
-	public Shield(int lives) {
-		this.lives = lives;
+	public Shield(int Id) {
+		this.Id = Id;
 	}
 	
 	

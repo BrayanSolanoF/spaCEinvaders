@@ -3,6 +3,7 @@ package Game;
 import EnemiesPackage.Enemie;
 import Factory.AbstractFactory;
 import Factory.FactoryProvider;
+import Sockets.Conector;
 
 public class Main {
 
@@ -25,10 +26,7 @@ public class Main {
 		game.createShields();
 		game.enemiesShoting();
 		
-		
-	     
-	     //Conector c = new Conector();
-	     //c.init();
+	
 	}
 
 }
