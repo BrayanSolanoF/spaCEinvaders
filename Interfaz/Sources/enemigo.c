@@ -101,7 +101,7 @@ void crear_enemigos(Enemigo *enemigo){
         auxiliar= auxiliar->siguiente;
         auxiliar->x1= pos_x +ENEMIGO_WIDTH+10;
         auxiliar->y1 = pos_y;
-        strcpy(auxiliar->path, "C:/Users/falei/CLionProjects/Proyecto/images/amarillo.bmp");
+        strcpy(auxiliar->path, "../images/amarillo.bmp");
         auxiliar->bmpTexture= NULL;
         auxiliar->siguiente=NULL;
         auxiliar->flag=true;

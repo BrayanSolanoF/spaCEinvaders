@@ -142,7 +142,7 @@ int main( int argc, char* args[] )
                 SDL_Rect targetRect_aux; //Rectangle to which pacman image will be drawn
                 SDL_Surface* image = NULL; //To hold bmp image
                 SDL_Texture* mytexture = NULL; //To hold bmp image
-                image = SDL_LoadBMP("C:/Users/falei/CLionProjects/Proyecto/images/intro.bmp");
+                image = SDL_LoadBMP("../images/intro.bmp");
 
                 mytexture = SDL_CreateTextureFromSurface(gRenderer, image);
                 SDL_FreeSurface(image);

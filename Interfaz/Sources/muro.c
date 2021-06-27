@@ -37,7 +37,7 @@ void crearMuros(Muro *muro){
         auxiliar->y1=pos_y;
         auxiliar->siguiente= NULL;
         auxiliar->colisiones=0;
-        strcpy(auxiliar->path, "C:/Users/falei/CLionProjects/Proyecto/images/muro.bmp");
+        strcpy(auxiliar->path, "../images/muro.bmp");
     }
 }
 void colisionMuro(Muro *muro){
