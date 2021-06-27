@@ -11,10 +11,11 @@ void pintar_Enemigos(Enemigo *enemigo, SDL_Renderer *gRenderer){
 
     //SDL_Surface* bmpSurface_ = NULL; //To hold bmp image
     //bmpSurface_ = SDL_LoadBMP(mi_enemigo->path);
-    SDL_SetRenderDrawColor(gRenderer,255,0,205,0);
+
     SDL_Rect rectangulo;
 
     while(mi_enemigo != NULL){
+        SDL_SetRenderDrawColor(gRenderer,255,0,205,0);
         //Convert surface to texture for rendering
         //mi_enemigo->bmpTexture= SDL_CreateTextureFromSurface(gRenderer, bmpSurface_);
         if(mi_enemigo->flag==true){
@@ -26,12 +27,11 @@ void pintar_Enemigos(Enemigo *enemigo, SDL_Renderer *gRenderer){
             SDL_RenderDrawRect(gRenderer, &rectangulo);
             if(mi_enemigo->misil!=NULL){
                 if(mi_enemigo->misil->activo==true){
-                    printf("por alguna razon entra al if\n");
+                    SDL_SetRenderDrawColor(gRenderer,255,255,200,0);
                     SDL_RenderDrawLine(gRenderer, mi_enemigo->misil->x1, mi_enemigo->misil->y1,mi_enemigo->misil->x2,
                                        mi_enemigo->misil->y2);
                 }
             }
-
         }
         mi_enemigo = mi_enemigo->siguiente;
     }
@@ -70,22 +70,35 @@ void movimiento_Enemigo(Enemigo *enemigo){
         if(enemigo_aux3->misil==NULL){
             crearMisilEnemigo(enemigo_aux3); //CAMBIAAR
         }
-        else if(enemigo_aux3->misil!=NULL) {
+        else if(enemigo_aux3->misil!=NULL && count==enemigoDisparando) {
+            //printf("vamos por el: %d \n", enemigoDisparando);
             if (enemigo_aux3->misil->activo == false && alguienDisparando == false) {
                 //NO SE MUEVE EL MISIL
+                //printf("entra al if \n");
+                enemigo_aux3->misil->x1=enemigo_aux3->x1+ENEMIGO_WIDTH/2;
+                enemigo_aux3->misil->x2= enemigo_aux3->x1+ENEMIGO_WIDTH/2;
+
                 enemigo_aux3->misil->activo=true;
                 alguienDisparando=true;
 
-                //enemigo_aux3->misil = true;
             } else if(enemigo_aux3->misil->activo == true && alguienDisparando == true){
                 misilActivo(enemigo_aux3->misil);
-                count++;
+                printf("el: %d se esta pintando \n", enemigoDisparando);
+                colisionMisilE(enemigo_aux3->misil, enemigo_aux3);
             }
+
         }
 
         enemigo_aux3= enemigo_aux3->siguiente;
+        count++;
+        if(enemigoDisparando>10){
+            enemigoDisparando=1;
+            alguienDisparando=false;
+        }
+
     }
     free(enemigo_aux3);
+
 }
 
 void crear_enemigos(Enemigo *enemigo){
@@ -126,15 +139,22 @@ void crearMisilEnemigo(Enemigo *enemigo){
 void misilActivo(MisilEnemigo *misilE){
 
     if(misilE->activo==true){
-        printf("entra al misil activo\n");
         misilE->x1 += misilE->vel_x;
         misilE->y1 += misilE->vel_y;
         misilE->x2 += misilE->vel_x;
         misilE->y2 += misilE->vel_y;
     }
 }
-void colisionMisilE(MisilEnemigo *misilE ){
-
+void colisionMisilE(MisilEnemigo *misilE, Enemigo *enemigo){
+    if(misilE->y1>SCREEN_HEIGHT){
+        misilE->activo=false;
+        misilE->y1= enemigo->y1+ENEMIGO_HEIGHT;
+        misilE->x2= enemigo->x1+ENEMIGO_WIDTH/2;
+        misilE->y2= enemigo->y1+ENEMIGO_HEIGHT+MISIL_LEN;
+        misilE=NULL;
+        enemigoDisparando++;
+        alguienDisparando=false;
+    }
 }
 
 int rand_lim(int limit) {

@@ -28,6 +28,7 @@ void movimiento_Enemigo(Enemigo *enemigo);
 void crear_enemigos(Enemigo *enemigo);
 void crearMisilEnemigo(Enemigo *enemigo);
 void misilActivo(MisilEnemigo *misilE);
+void colisionMisilE(MisilEnemigo *misilE, Enemigo *enemigo );
 int rand_lim(int limit);
 struct Enemigo{
     int x1,y1;
