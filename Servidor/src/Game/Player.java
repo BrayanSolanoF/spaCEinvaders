@@ -5,6 +5,7 @@ public class Player {
 	private int Lives;
 	private String Name;
 	private int id;
+	private int puntuation = 0;
 	
 	
 	public Player(int lives, String name, int id) {
@@ -34,6 +35,14 @@ public class Player {
 	
 	public void shooting() {
 		System.out.println("Esto es un disparo del jugador");
+	}
+
+	public int getPuntuation() {
+		return puntuation;
+	}
+
+	public void setPuntuation(int puntuation) {
+		this.puntuation = puntuation;
 	}
 	
 }
