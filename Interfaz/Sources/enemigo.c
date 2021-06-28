@@ -45,19 +45,26 @@ int enemigoDisparando=1;
 bool alguienDisparando=false;
 void movimiento_Enemigo(Enemigo *enemigo){
     Enemigo *enemigo_aux1= enemigo;
-
+    bool limite=false;
     while(enemigo_aux1 != NULL){
         if(enemigo_aux1->x1  < 0){
             movimientoEnemigoVal= +SDL_abs(ENEMIGO_VEL);
+            limite=true;
         }else if((enemigo_aux1->x1+ENEMIGO_WIDTH) > SCREEN_WIDTH){
             movimientoEnemigoVal= -SDL_abs(ENEMIGO_VEL);
+            limite=true;
         }
+
         enemigo_aux1= enemigo_aux1->siguiente;
     }
+
     free(enemigo_aux1);
     Enemigo *enemigo_aux2= enemigo;
 
     while(enemigo_aux2 != NULL){
+        if(limite==true){
+            enemigo_aux2->y1 += 20;
+        }
         enemigo_aux2->x1 += movimientoEnemigoVal;
         enemigo_aux2= enemigo_aux2->siguiente;
     }

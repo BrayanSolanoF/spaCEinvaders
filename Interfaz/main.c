@@ -189,6 +189,8 @@ int main( int argc, char* args[] )
                 }
             }
 
+            //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
+
             // -----------------EVENTOS TECLADO-------------
             if(SDL_PollEvent(&event)){
                 if (event.type == SDL_QUIT)
