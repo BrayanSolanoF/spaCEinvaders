@@ -96,6 +96,7 @@ int main( int argc, char* args[] )
         mi_nave->misiles= NULL;
         strcpy(mi_nave->path,"../images/nave.bmp");
         mi_nave->vidas=3;
+        mi_nave->puntos=0;
 
         // OBJETOS PARA DIBUJAR AL JUGADOR
         SDL_Rect targetRect; //Rectangle to which pacman image will be drawn
@@ -137,6 +138,9 @@ int main( int argc, char* args[] )
         SDL_FreeSurface(muroSurface);
 
         int flag= 1;
+
+        // EL JUEGO SE VA A CREAR
+
         //While application is running
         while( !quit ) {
             //VENTANA DE INICIO
@@ -220,6 +224,20 @@ int main( int argc, char* args[] )
 
             SDL_RenderPresent(gRenderer);
             SDL_Delay(MS);
+            Enemigo  *enemigoAux = enemigo;
+            int counter_Marcador=0;
+
+            while (enemigoAux != NULL){
+                if(enemigoAux->flag==false)
+                    counter_Marcador++;
+                enemigoAux=enemigoAux->siguiente;
+            }
+            free(enemigoAux);
+            mi_nave->puntos=counter_Marcador*30;
+
+            printf("Marcador de jugador %d \n", mi_nave->puntos);
+
+            // GAME OVER
             if(mi_nave->vidas==0){
                 SDL_Rect rectangulo;
                 rectangulo.y=0;

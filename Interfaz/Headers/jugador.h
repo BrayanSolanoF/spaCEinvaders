@@ -30,12 +30,14 @@ struct Nave{
     Misil *misiles;
     char path[60];
     int vidas;
+    int puntos;
 };
 void pintar_Nave(Nave *nave, SDL_Rect targetRect, SDL_Texture *bmpTexture, SDL_Renderer *gRenderer, Enemigo *enemigo, Muro *muro);
 void avanza_horizontal();
 void avanza_vertical();
 void disparar();
 void colisionConEnemigo(Nave *nave, Enemigo *enemigo);
+void colisionConMuro(Enemigo *enemigo, Muro *muro);
 
 
 

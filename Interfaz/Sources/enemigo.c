@@ -80,6 +80,7 @@ void movimiento_Enemigo(Enemigo *enemigo){
                 alguienDisparando=true;
 
             } else if(enemigo_aux3->misil->activo == true && alguienDisparando == true){
+
                 misilActivo(enemigo_aux3->misil);
                 colisionMisilE(enemigo_aux3->misil, enemigo_aux3);
             }

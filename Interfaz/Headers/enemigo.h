@@ -37,6 +37,7 @@ struct Enemigo{
     SDL_Texture* bmpTexture; //To hold bmp image
     bool flag;
     MisilEnemigo *misil;
+
 };
 
 struct  MisilEnemigo{
@@ -44,6 +45,7 @@ struct  MisilEnemigo{
     int x2,y2;
     int vel_x, vel_y;
     bool activo;
+    bool colisionMuro;
 };
 
 #endif //INTERFAZ_ENEMIGO_H
