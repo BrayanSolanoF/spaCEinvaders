@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Armando/Desktop/untitled9/main.c
+socket.h
+C:/Users/Armando/Desktop/untitled9/socket.h
+
+C:/Users/Armando/Desktop/untitled9/socket.h
+
