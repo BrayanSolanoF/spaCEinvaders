@@ -71,10 +71,8 @@ void movimiento_Enemigo(Enemigo *enemigo){
             crearMisilEnemigo(enemigo_aux3); //CAMBIAAR
         }
         else if(enemigo_aux3->misil!=NULL && count==enemigoDisparando) {
-            //printf("vamos por el: %d \n", enemigoDisparando);
             if (enemigo_aux3->misil->activo == false && alguienDisparando == false) {
                 //NO SE MUEVE EL MISIL
-                //printf("entra al if \n");
                 enemigo_aux3->misil->x1=enemigo_aux3->x1+ENEMIGO_WIDTH/2;
                 enemigo_aux3->misil->x2= enemigo_aux3->x1+ENEMIGO_WIDTH/2;
 
@@ -83,7 +81,6 @@ void movimiento_Enemigo(Enemigo *enemigo){
 
             } else if(enemigo_aux3->misil->activo == true && alguienDisparando == true){
                 misilActivo(enemigo_aux3->misil);
-                printf("el: %d se esta pintando \n", enemigoDisparando);
                 colisionMisilE(enemigo_aux3->misil, enemigo_aux3);
             }
 
@@ -137,7 +134,6 @@ void crearMisilEnemigo(Enemigo *enemigo){
 }
 
 void misilActivo(MisilEnemigo *misilE){
-
     if(misilE->activo==true){
         misilE->x1 += misilE->vel_x;
         misilE->y1 += misilE->vel_y;

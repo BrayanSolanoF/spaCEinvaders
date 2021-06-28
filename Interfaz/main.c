@@ -83,6 +83,7 @@ int main( int argc, char* args[] )
     else
     {
         bool quit = false;
+        bool GameOver= false;
         SDL_Event event;
         //---------------------------CREACION DEL JUGADOR----------------------------
         Nave *mi_nave= (Nave *) SDL_malloc(sizeof (Nave));
@@ -94,6 +95,7 @@ int main( int argc, char* args[] )
         mi_nave->vel_y=NAVE_VEL;
         mi_nave->misiles= NULL;
         strcpy(mi_nave->path,"../images/nave.bmp");
+        mi_nave->vidas=3;
 
         // OBJETOS PARA DIBUJAR AL JUGADOR
         SDL_Rect targetRect; //Rectangle to which pacman image will be drawn
@@ -218,6 +220,22 @@ int main( int argc, char* args[] )
 
             SDL_RenderPresent(gRenderer);
             SDL_Delay(MS);
+            if(mi_nave->vidas==0){
+                SDL_Rect rectangulo;
+                rectangulo.y=0;
+                rectangulo.x=0;
+                rectangulo.w= SCREEN_WIDTH;
+                rectangulo.h=SCREEN_HEIGHT;
+                SDL_UpdateWindowSurface(gWindow);
+                SDL_SetRenderDrawColor(gRenderer,127,80,154,0);
+                SDL_RenderClear(gRenderer);
+                SDL_RenderDrawRect(gRenderer,&rectangulo);
+                //SDL_RenderCopy(gRenderer, mytexture, NULL, &targetRect_aux); //Se pinta la imagen
+                SDL_RenderPresent(gRenderer);
+
+                SDL_Delay(2000);
+                quit=true;
+            }
         }
     }
 

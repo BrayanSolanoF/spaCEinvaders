@@ -12,6 +12,7 @@ void pintar_Nave(Nave *minave, SDL_Rect targetRect,  SDL_Texture *bmpTexture, SD
     nave = minave;
     while(ixMisil!= NULL){
         MisilAvanza(ixMisil, enemigo,muro);
+
         if(ixMisil->flag== false){
             SDL_RenderDrawLine(gRenderer, ixMisil->x1, ixMisil->y1,ixMisil->x2,
                                ixMisil->y2);
@@ -19,6 +20,15 @@ void pintar_Nave(Nave *minave, SDL_Rect targetRect,  SDL_Texture *bmpTexture, SD
 
         ixMisil=ixMisil->siguiente;
     }
+    Enemigo *enemigoAux=enemigo;
+    while(enemigoAux != NULL){
+        if(enemigoAux->misil != NULL)
+            if(enemigoAux->misil->activo==true)
+                colisionConEnemigo(nave,enemigoAux);
+        enemigoAux= enemigoAux->siguiente;
+
+    }
+    free(enemigoAux);
     //--------------------------PINTAR NAVE---------------------
     //Define el rectángulo sobre el que se va a pintar el jugador
     targetRect.w = NAVE_WIDTH;
@@ -62,5 +72,20 @@ void disparar(){
         ixMisil->siguiente=NULL;
         ixMisil->flag=false;
     }
+}
+
+void colisionConEnemigo(Nave *nave, Enemigo *enemigo){
+    //printf("entraaaa \n");
+    MisilEnemigo *misilEnemigo= enemigo->misil;
+
+    if((misilEnemigo->y2 > nave->y1) && (misilEnemigo->y2 < (nave->y1+NAVE_HEIGHT/4))
+    && (misilEnemigo->x1 > nave->x1) && (misilEnemigo->x1 < (nave->x1 + NAVE_WIDTH)) ) {
+        //BAJAR VIDAS DEL JUGADOR
+        nave->vidas--;
+        printf("Vidas del jugador: %d \n", nave->vidas);
+    }
+
+
+    //printf("saleeee\n");
 }
 
