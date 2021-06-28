@@ -65,12 +65,15 @@ public class Game {
 		int posi = crabs + squids + octopus;
 		if (index < 4) {
 			p1.setPuntuation(pointsCrabs);
+			System.out.println(p1.getPuntuation());
 		} else if (index >= 8) {
 			int p = p1.getPuntuation() + pointsOctopus;
 			p1.setPuntuation(p);
+			System.out.println(p1.getPuntuation());
 		}else if(index > 3 && index < 8){
 			int p = p1.getPuntuation() + pointsSquids;
 			p1.setPuntuation(p);
+			System.out.println(p1.getPuntuation());
 		}	
 	}
 	

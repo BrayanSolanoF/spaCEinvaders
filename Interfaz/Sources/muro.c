@@ -42,8 +42,8 @@ void crearMuros(Muro *muro){
 }
 void colisionMuro(Muro *muro){
     muro->colisiones +=1;
-    if(muro->colisiones >= 8){
+    if(muro->colisiones >= 30){
         muro->destruido=true;
+        enviar("192.168.50.254", 7000, "3");
     }
-    //enviar("192.168.50.254", 7000, "[EliminaMuro;Fatima;3;34;93]");
 }

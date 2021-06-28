@@ -145,7 +145,7 @@ int main( int argc, char* args[] )
         //While application is running
 
         // ENVIAR PETICION CUANDO SE ELIMINA ENEMIGO         key    jugador
-        enviar("192.168.50.254", 7000, "NuevoJuego;Fatima;10;20;30");
+        enviar("192.168.50.254", 7000, "1");
 
         //enviar("192.168.50.254", 7000, "EliminaEnemigo");
         //enviar("192.168.50.254", 7000, "EliminaMuro");
@@ -189,6 +189,8 @@ int main( int argc, char* args[] )
                 }
             }
 
+            //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
+
             // -----------------EVENTOS TECLADO-------------
             if(SDL_PollEvent(&event)){
                 if (event.type == SDL_QUIT)
@@ -209,10 +211,10 @@ int main( int argc, char* args[] )
                         avanza_horizontal();
                     }else if(keys[SDL_SCANCODE_UP]){
                         mi_nave->vel_y= -abs(mi_nave->vel_y);
-                        avanza_vertical();
+                        //avanza_vertical();
                     }else if(keys[SDL_SCANCODE_DOWN]){
                         mi_nave->vel_y= +abs(mi_nave->vel_y);
-                        avanza_vertical();
+                        //avanza_vertical();
                     }else if(keys[SDL_SCANCODE_SPACE]){
                         disparar();
                     }
@@ -267,7 +269,7 @@ int main( int argc, char* args[] )
     }
 
     //Free resources and close SDL
-    enviar("192.168.50.254", 7000, "false;Fatima;25;50;75");
+    enviar("192.168.50.254", 7000, "5");
     close();
 
     return 0;

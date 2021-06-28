@@ -25,12 +25,11 @@ void pintar_Nave(Nave *minave, SDL_Rect targetRect,  SDL_Texture *bmpTexture, SD
         if(enemigoAux->misil != NULL)
             if(enemigoAux->misil->activo==true){
                 //printf("el misil era valido \n");
-                //colisionConMuro(enemigoAux, muro);
+                colisionConMuro(enemigoAux, muro);
                 colisionConEnemigo(nave,enemigoAux);
             }
         enemigoAux= enemigoAux->siguiente;
     }
-    //printf("salio del while \n");
     free(enemigoAux);
     //--------------------------PINTAR NAVE---------------------
     //Define el rectángulo sobre el que se va a pintar el jugador
@@ -43,6 +42,7 @@ void pintar_Nave(Nave *minave, SDL_Rect targetRect,  SDL_Texture *bmpTexture, SD
 
 void avanza_horizontal(){
     nave->x1 += nave->vel_x;
+
 
 }
 void avanza_vertical(){
@@ -84,24 +84,28 @@ void colisionConEnemigo(Nave *nave, Enemigo *enemigo){
     if((misilEnemigo->y2 > nave->y1) && (misilEnemigo->y2 < (nave->y1+NAVE_HEIGHT/4))
     && (misilEnemigo->x1 > nave->x1) && (misilEnemigo->x1 < (nave->x1 + NAVE_WIDTH)) ) {
         //BAJAR VIDAS DEL JUGADOR
+        printf("menos vidas\n");
         nave->vidas--;
-        //printf("Vidas del jugador: %d \n", nave->vidas);
+        enviar("192.168.50.254", 7000, "4");
     }
 }
 
 void colisionConMuro(Enemigo *enemigo, Muro *muro){
     Muro *muroAux= muro;
     MisilEnemigo *misilAux= enemigo->misil;
-    //printf("entro a colision con enemigo\n");
-    while(muroAux!=NULL&&misilAux!=NULL){
+
+    int count = 1;
+    while(muroAux!=NULL && misilAux!=NULL){
         if(misilAux->activo==true){
-            if((muroAux->x1<misilAux->x1)&&((muroAux->x1+MURO_WIDTH)>misilAux->x1) &&
-                    (muroAux->y1<misilAux->y2)&&((muroAux->y1+MURO_HEIGHT) > misilAux->y2)){
+            if((muroAux->x1<misilAux->x1)&&((muroAux->x1+MURO_WIDTH) >misilAux->x1) &&
+                    (muroAux->y1<misilAux->y2)&& ((muroAux->y1+6) > misilAux->y2) && muroAux->destruido==false){
+                misilAux->colisionMuroFlag=true;
                 misilAux->activo=false;
-                printf("misil ahora falso \n");
+                colisionMuro(muroAux);
             }
         }
         muroAux=muroAux->siguiente;
+        count++;
     }
 }
 

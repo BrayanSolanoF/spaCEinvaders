@@ -45,37 +45,55 @@ int enemigoDisparando=1;
 bool alguienDisparando=false;
 void movimiento_Enemigo(Enemigo *enemigo){
     Enemigo *enemigo_aux1= enemigo;
-
+    bool limite=false;
     while(enemigo_aux1 != NULL){
         if(enemigo_aux1->x1  < 0){
             movimientoEnemigoVal= +SDL_abs(ENEMIGO_VEL);
+            limite=true;
         }else if((enemigo_aux1->x1+ENEMIGO_WIDTH) > SCREEN_WIDTH){
             movimientoEnemigoVal= -SDL_abs(ENEMIGO_VEL);
+            limite=true;
         }
+
         enemigo_aux1= enemigo_aux1->siguiente;
     }
+
     free(enemigo_aux1);
     Enemigo *enemigo_aux2= enemigo;
 
     while(enemigo_aux2 != NULL){
+        if(limite==true){
+            enemigo_aux2->y1 += 20;
+        }
         enemigo_aux2->x1 += movimientoEnemigoVal;
         enemigo_aux2= enemigo_aux2->siguiente;
     }
     free(enemigo_aux2);
-    Enemigo *enemigo_aux3= enemigo;
+    movimiento_Misil(enemigo);
+
+}
+void movimiento_Misil(Enemigo *enemigo){
     int count=1;
 
+    Enemigo *enemigo_aux3=enemigo;
     while(enemigo_aux3 != NULL){
         enemigo_aux3->x1 += movimientoEnemigoVal;
         if(enemigo_aux3->misil==NULL){
             crearMisilEnemigo(enemigo_aux3); //CAMBIAAR
         }
+        if(enemigo_aux3->misil->colisionMuroFlag==true){
+            //printf("alguien disparando ahora va a ser false\n");
+            alguienDisparando=false;
+            enemigo_aux3->misil->colisionMuroFlag=false;
+
+        }
         else if(enemigo_aux3->misil!=NULL && count==enemigoDisparando) {
             if (enemigo_aux3->misil->activo == false && alguienDisparando == false) {
                 //NO SE MUEVE EL MISIL
+                //printf
                 enemigo_aux3->misil->x1=enemigo_aux3->x1+ENEMIGO_WIDTH/2;
                 enemigo_aux3->misil->x2= enemigo_aux3->x1+ENEMIGO_WIDTH/2;
-
+                enemigo_aux3->misil->colisionMuroFlag= false;
                 enemigo_aux3->misil->activo=true;
                 alguienDisparando=true;
 
@@ -131,6 +149,7 @@ void crearMisilEnemigo(Enemigo *enemigo){
     enemigo->misil->y2= enemigo->y1+ENEMIGO_HEIGHT+MISIL_LEN;
     enemigo->misil->vel_x=0;
     enemigo->misil->vel_y=MISIL_VEL;
+    enemigo->misil->colisionMuroFlag=false;
     //enemigo->misil->activo=false;
 }
 
@@ -154,15 +173,3 @@ void colisionMisilE(MisilEnemigo *misilE, Enemigo *enemigo){
     }
 }
 
-int rand_lim(int limit) {
-/* return a random number between 0 and limit inclusive.
- */
-    printf("hace random\n");
-    int divisor = RAND_MAX/(limit+1);
-    int retval;
-    do {
-        retval = rand() / divisor;
-    } while (retval > limit);
-    printf("sale de random");
-    return retval;
-}
