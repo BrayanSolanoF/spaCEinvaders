@@ -252,14 +252,33 @@ int main( int argc, char* args[] )
                 rectangulo.x=0;
                 rectangulo.w= SCREEN_WIDTH;
                 rectangulo.h=SCREEN_HEIGHT;
-                SDL_UpdateWindowSurface(gWindow);
-                SDL_SetRenderDrawColor(gRenderer,127,80,154,0);
-                SDL_RenderClear(gRenderer);
-                SDL_RenderDrawRect(gRenderer,&rectangulo);
-                //SDL_RenderCopy(gRenderer, mytexture, NULL, &targetRect_aux); //Se pinta la imagen
-                SDL_RenderPresent(gRenderer);
+                SDL_Rect targetRect_aux; //Rectangle to which pacman image will be drawn
+                SDL_Surface* image = NULL; //To hold bmp image
+                SDL_Texture* mytexture = NULL; //To hold bmp image
 
-                SDL_Delay(2000);
+
+                for(int i=0; i<3;i++){
+                    if(i==0){
+                        image = SDL_LoadBMP("../images/gameover1.bmp");
+                        mytexture = SDL_CreateTextureFromSurface(gRenderer, image);
+                        SDL_FreeSurface(image);
+                    }else if(i==1){
+                        image = SDL_LoadBMP("../images/gameover2.bmp");
+                        mytexture = SDL_CreateTextureFromSurface(gRenderer, image);
+                        SDL_FreeSurface(image);
+                    }else if(i==2){
+                        image = SDL_LoadBMP("../images/gameover3.bmp");
+                        mytexture = SDL_CreateTextureFromSurface(gRenderer, image);
+                        SDL_FreeSurface(image);
+                    }
+                    SDL_UpdateWindowSurface(gWindow);
+                    SDL_RenderClear(gRenderer);
+
+                    SDL_RenderCopy(gRenderer, mytexture, NULL, &rectangulo); //Se pinta la imagen
+                    SDL_RenderPresent(gRenderer);
+                    SDL_Delay(600);
+                }
+
                 quit=true;
             }
         }
