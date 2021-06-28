@@ -17,7 +17,7 @@
 
 #define ENEMIGO_WIDTH 30
 #define ENEMIGO_HEIGHT 30
-#define ENEMIGO_VEL 3
+#define ENEMIGO_VEL 1
 
 
 typedef struct Enemigo Enemigo;
@@ -29,7 +29,7 @@ void crear_enemigos(Enemigo *enemigo);
 void crearMisilEnemigo(Enemigo *enemigo);
 void misilActivo(MisilEnemigo *misilE);
 void colisionMisilE(MisilEnemigo *misilE, Enemigo *enemigo );
-int rand_lim(int limit);
+void movimiento_Misil(Enemigo *enemigo);
 struct Enemigo{
     int x1,y1;
     Enemigo *siguiente;
@@ -45,7 +45,7 @@ struct  MisilEnemigo{
     int x2,y2;
     int vel_x, vel_y;
     bool activo;
-    bool colisionMuro;
+    bool colisionMuroFlag;
 };
 
 #endif //INTERFAZ_ENEMIGO_H

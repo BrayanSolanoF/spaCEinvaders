@@ -47,7 +47,7 @@ void collision(Misil *misil, Enemigo *enemigo, Muro *muro){
     while (muroAux!=NULL){
         if((misil->x2 > muroAux->x1) && (misil->x2 < (muroAux->x1+MURO_WIDTH)) &&
            (misil->y2 < muroAux->y1+MURO_HEIGHT)&&(misil->y2 > muroAux->y1) &&
-           misil->flag==false && muroAux->destruido==false){
+           misil->flag==false && muroAux->destruido == false){
             misil->flag=true;
             colisionMuro(muroAux);
         }
