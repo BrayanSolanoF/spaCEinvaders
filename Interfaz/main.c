@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include "socket.h"
 
 #include "Headers/jugador.h"
 
@@ -142,6 +143,9 @@ int main( int argc, char* args[] )
         // EL JUEGO SE VA A CREAR
 
         //While application is running
+
+        enviar("192.168.50.254", 7000, "[89,50,hola]");
+
         while( !quit ) {
             //VENTANA DE INICIO
             if(flag==1){
