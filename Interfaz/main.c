@@ -152,17 +152,17 @@ int main( int argc, char* args[] )
             //VENTANA DE INICIO
             if(flag==1){
                 SDL_Rect targetRect_aux; //Rectangle to which pacman image will be drawn
+                targetRect_aux.w = SCREEN_WIDTH;
+                targetRect_aux.h = SCREEN_HEIGHT;
+                targetRect_aux.x = 0;
+                targetRect_aux.y = 0;
+
                 SDL_Surface* image = NULL; //To hold bmp image
                 SDL_Texture* mytexture = NULL; //To hold bmp image
                 image = SDL_LoadBMP("../images/intro.bmp");
 
                 mytexture = SDL_CreateTextureFromSurface(gRenderer, image);
                 SDL_FreeSurface(image);
-
-                targetRect_aux.w = SCREEN_WIDTH;
-                targetRect_aux.h = SCREEN_HEIGHT;
-                targetRect_aux.x = 0;
-                targetRect_aux.y = 0;
 
                 while(flag==1){
 
@@ -172,6 +172,7 @@ int main( int argc, char* args[] )
 
                     SDL_RenderCopy(gRenderer, mytexture, NULL, &targetRect_aux); //Se pinta la imagen
                     SDL_RenderPresent(gRenderer);
+
                     if(SDL_PollEvent(&event)) {
                         if (event.type == SDL_QUIT){
                             quit = true;
@@ -185,8 +186,6 @@ int main( int argc, char* args[] )
                     SDL_Delay(MS);
                 }
             }
-
-            //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
 
             // -----------------EVENTOS TECLADO-------------
             if(SDL_PollEvent(&event)){
@@ -225,10 +224,31 @@ int main( int argc, char* args[] )
             SDL_SetRenderDrawColor(gRenderer,0,0,0,0);
             SDL_RenderClear(gRenderer);
             SDL_SetRenderDrawColor(gRenderer,255,255,255,0);
+
+            //VIDAS DEL JUGADOR
+            SDL_Rect rectanguloVidas; //Rectangle to which pacman image will be drawn
+            SDL_Surface* imageVidas = NULL; //To hold bmp image
+            SDL_Texture* textureVidas = NULL; //To hold bmp image
+            rectanguloVidas.w = 120;
+            rectanguloVidas.h = 40;
+            rectanguloVidas.x = 10;
+            rectanguloVidas.y = 0;
+            if(mi_nave->vidas==3){
+                //imageVidas = SDL_LoadBMP("../images/3vidas.bmp");
+            }else if(mi_nave->vidas==2){
+                //imageVidas = SDL_LoadBMP("../images/2vidas.bmp");
+            }else if(mi_nave->vidas==1){
+                //imageVidas = SDL_LoadBMP("../images/1vida.bmp");
+            }
+
+            textureVidas = SDL_CreateTextureFromSurface(gRenderer, imageVidas);
+            SDL_FreeSurface(imageVidas);
+            SDL_RenderCopy(gRenderer, textureVidas, NULL, &rectanguloVidas);
             //Nave *nave, SDL_Rect targetRect, SDL_Surface *bmpSurface, SDL_Texture *bmpTexture
             pintar_Nave(mi_nave, targetRect, bmpTexture,gRenderer, enemigo,muro);
             pintar_Enemigos(enemigo,gRenderer);
             pintarMuro(gRenderer, muroTexture, muro);
+
 
             SDL_RenderPresent(gRenderer);
             SDL_Delay(MS);
@@ -285,7 +305,7 @@ int main( int argc, char* args[] )
     }
 
     //Free resources and close SDL
-    enviar("192.168.50.254", 7000, "5");
+    //enviar("192.168.50.254", 7000, "5");
     close();
 
     return 0;
