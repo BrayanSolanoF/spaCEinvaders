@@ -39,6 +39,7 @@ void collision(Misil *misil, Enemigo *enemigo, Muro *muro){
            misil->flag==false && enemigoAux->flag==true)
         {
             enemigoAux->flag = false;
+            enviar("192.168.50.254", 7000, "2");
 
             misil->flag=true;
         }

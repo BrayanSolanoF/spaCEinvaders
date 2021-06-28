@@ -86,6 +86,7 @@ void colisionConEnemigo(Nave *nave, Enemigo *enemigo){
         //BAJAR VIDAS DEL JUGADOR
         printf("menos vidas\n");
         nave->vidas--;
+        enviar("192.168.50.254", 7000, "4");
     }
 }
 

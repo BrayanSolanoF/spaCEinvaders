@@ -14,21 +14,26 @@ public class Server {
     /*
    Este metodo escuchar  lo que hace es abrir un socket en un epecifico puerto para recibir algo
     */
-    public String escuchar(int puerto){
+    public void escuchar(int puerto){
+        int n = 0;
         try {
             ServerSocket servidor= new ServerSocket(puerto);
             System.out.println("Esperando conexion");
-            Socket misocket=servidor.accept();
-            InputStreamReader isr =new InputStreamReader(misocket.getInputStream());
-            BufferedReader buff=new BufferedReader(isr);
-            String mensaje=buff.readLine();
-            parser.doSomething(mensaje);
-            System.out.println("Mensaje recibido");
-            misocket.close();
+            while( n != 5){
+                Socket misocket=servidor.accept();
+                InputStreamReader isr =new InputStreamReader(misocket.getInputStream());
+                BufferedReader buff=new BufferedReader(isr);
+                String mensaje=buff.readLine();
+                n = Integer.parseInt(mensaje);
+                parser.doSomething(mensaje);
+                System.out.println("Mensaje recibido");
+                misocket.close();
+            }
             servidor.close();
-            return mensaje;
+            return ;
         } catch (IOException e) {
-            return "Error";
+            System.out.println("Error");
+            return ;
         }
 
     }

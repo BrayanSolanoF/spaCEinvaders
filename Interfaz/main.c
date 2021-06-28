@@ -145,7 +145,7 @@ int main( int argc, char* args[] )
         //While application is running
 
         // ENVIAR PETICION CUANDO SE ELIMINA ENEMIGO         key    jugador
-        //enviar("192.168.50.254", 7000, "NuevoJuego;Fatima;10;20;30");
+        enviar("192.168.50.254", 7000, "1");
 
         //enviar("192.168.50.254", 7000, "EliminaEnemigo");
         //enviar("192.168.50.254", 7000, "EliminaMuro");
@@ -269,7 +269,7 @@ int main( int argc, char* args[] )
     }
 
     //Free resources and close SDL
-    //enviar("192.168.50.254", 7000, "false;Fatima;25;50;75");
+    enviar("192.168.50.254", 7000, "5");
     close();
 
     return 0;
