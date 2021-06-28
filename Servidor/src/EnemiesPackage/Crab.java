@@ -1,5 +1,9 @@
 package EnemiesPackage;
 
+/**
+ * Clase para enemigo tipo cangrejo
+ * Implementa la interfaz Enemie
+ */
 public class Crab implements Enemie{
 	private int Id;
 	private int points;

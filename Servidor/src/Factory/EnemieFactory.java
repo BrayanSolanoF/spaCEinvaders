@@ -5,6 +5,10 @@ import EnemiesPackage.Enemie;
 import EnemiesPackage.Octopus;
 import EnemiesPackage.Squid;
 
+/**
+ * Clase para la factory de los enemigos
+ * Implementa la asbtract Factory
+ */
 public class EnemieFactory implements AbstractFactory{
 
 	@Override

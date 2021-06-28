@@ -1,5 +1,8 @@
 package EnemiesPackage;
-
+/**
+ * Clase para enemigo tipo pulpo
+ * Implementa la interfaz Enemie
+ */
 public class Octopus implements Enemie{
 	private int Id;
 	private int points;

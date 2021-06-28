@@ -8,7 +8,11 @@ import Game.Game;
 public class Parser {
 	
 	Game game;
-	
+
+	/**
+	 * Ejecuta una accion segun sea la peticion del cliente
+	 * @param message
+	 */
 	public void doSomething(String message) {
 		//System.out.println(message);
 
@@ -31,7 +35,10 @@ public class Parser {
 
 		}
 	}
-	
+
+	/**
+	 * Crea una nueva partida
+	 */
 	public void newGame() {
 		game = new Game("Fatima", 25, 50, 75, 100);
 		game.createEnemies();

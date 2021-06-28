@@ -21,7 +21,15 @@ public class Game {
 	int octopus = 4;
 	Boolean flagGame = true;
 	AbstractFactory abstractFactory = FactoryProvider.getFactory("Enemie");
-     
+
+	/**
+	 * Constructor de la clase
+	 * @param player1
+	 * @param pointsCrabs
+	 * @param pointsOctopus
+	 * @param pointsSquids
+	 * @param pointsShips
+	 */
 	public Game(String player1, int pointsCrabs, int pointsOctopus, int pointsSquids, int pointsShips) {
 
 		
@@ -32,6 +40,9 @@ public class Game {
 		this.pointsSquids = pointsSquids;
 	}
 
+	/**
+	 * Crea los enemigos desde el abstract factory
+	 */
 	public void createEnemies() {
 		enemiesList.add((Enemie) abstractFactory.create("Crab", pointsCrabs, 1));
 		enemiesList.add((Enemie) abstractFactory.create("Crab", pointsCrabs, 2));
@@ -44,7 +55,10 @@ public class Game {
 		enemiesList.add((Enemie) abstractFactory.create("Octopus", pointsOctopus, 9));
 		enemiesList.add((Enemie) abstractFactory.create("Octopus", pointsOctopus, 10));
 	}
-	
+
+	/**
+	 * Crea los escudos y los agrega a una lista
+	 */
 	public void createShields() {
 		Shield shield1 = new Shield(1);
 		Shield shield2 = new Shield(2);
@@ -54,12 +68,17 @@ public class Game {
 		shieldList.add(shield3);
 		
 	}
-	 
+
+	/**
+	 * Crea el jugador de la partida
+	 */
 	public void createPlayers() {
 		p1 = new Player(3, namePlayer1, 1);			
 	}
-	
-	
+
+	/**
+	 * Elimina enemigos y da puntuacion al jugador por el enemigo eliminado
+	 */
 	public void deleteEnemies() {
 		int index = (int)(Math.random() * enemiesList.size());
 		int posi = crabs + squids + octopus;
@@ -77,7 +96,10 @@ public class Game {
 			System.out.println("Puntuación del jugador: "+p1.getPuntuation());
 		}	
 	}
-	
+
+	/**
+	 * Elimina los escudos
+	 */
 	public void deleteShield() {
 		if (shieldList.size() != 0) {
 			shieldList.remove(0);
@@ -85,7 +107,10 @@ public class Game {
 			System.out.println("Se eliminaron todos los escudos");
 		}
 	}
-	
+
+	/**
+	 * Setea las vidas del jugador cada vez que pierde una
+	 */
 	public void playerLessLive() {
 		if (p1.getLives() == 0) {
 			System.out.println("El jugador ha perdido el juego");

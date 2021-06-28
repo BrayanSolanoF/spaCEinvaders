@@ -1,5 +1,8 @@
 package EnemiesPackage;
-
+/**
+ * Clase para enemigo tipo calamar
+ * Implementa la interfaz Enemie
+ */
 public class Squid implements Enemie{
 	private int Id;
 	private int points;

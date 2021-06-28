@@ -1,5 +1,8 @@
 package Game;
 
+/**
+ * Clase para el jugadir
+ */
 public class Player {
 
 	private int Lives;

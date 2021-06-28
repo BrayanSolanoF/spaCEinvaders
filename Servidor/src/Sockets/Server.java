@@ -12,7 +12,7 @@ public class Server {
 	Parser parser = new Parser();
 
     /*
-   Este metodo escuchar  lo que hace es abrir un socket en un epecifico puerto para recibir algo
+    *Este metodo escuchar  lo que hace es abrir un socket en un epecifico puerto para recibir algo
     */
     public void escuchar(int puerto){
         int n = 0;
@@ -38,7 +38,7 @@ public class Server {
 
     }
     /*
-   Este metodo escuchar  lo que hace es abrir un socket en un epecifico puerto para recibir algo
+    *Este metodo escuchar  lo que hace es abrir un socket en un epecifico puerto para enviar algo
     */
     public void enviar(String ip ,int puerto,String mensaje) throws IOException {
         Socket misocket=new Socket(ip,puerto);
