@@ -21,6 +21,7 @@ public class Game {
 	int pointsOctopus;
 	int pointsSquids;
 	int pointsShips;
+	Boolean flagGame;
 	AbstractFactory abstractFactory = FactoryProvider.getFactory("Enemie");
      
     
