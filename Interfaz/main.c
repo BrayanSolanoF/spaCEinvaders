@@ -144,7 +144,12 @@ int main( int argc, char* args[] )
 
         //While application is running
 
-        enviar("192.168.50.254", 7000, "[89,50,hola]");
+        // ENVIAR PETICION CUANDO SE ELIMINA ENEMIGO         key    jugador
+        enviar("192.168.50.254", 7000, "NuevoJuego;Fatima;10;20;30");
+
+        //enviar("192.168.50.254", 7000, "EliminaEnemigo");
+        //enviar("192.168.50.254", 7000, "EliminaMuro");
+        //enviar("192.168.50.254", 7000, "PierdeVida");
 
         while( !quit ) {
             //VENTANA DE INICIO
@@ -239,7 +244,7 @@ int main( int argc, char* args[] )
             free(enemigoAux);
             mi_nave->puntos=counter_Marcador*30;
 
-            printf("Marcador de jugador %d \n", mi_nave->puntos);
+            //printf("Marcador de jugador %d \n", mi_nave->puntos);
 
             // GAME OVER
             if(mi_nave->vidas==0){
@@ -262,6 +267,7 @@ int main( int argc, char* args[] )
     }
 
     //Free resources and close SDL
+    enviar("192.168.50.254", 7000, "false;Fatima;25;50;75");
     close();
 
     return 0;
