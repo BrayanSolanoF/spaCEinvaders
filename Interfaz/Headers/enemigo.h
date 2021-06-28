@@ -28,6 +28,7 @@ void movimiento_Enemigo(Enemigo *enemigo);
 void crear_enemigos(Enemigo *enemigo);
 void crearMisilEnemigo(Enemigo *enemigo);
 void misilActivo(MisilEnemigo *misilE);
+void colisionMisilE(MisilEnemigo *misilE, Enemigo *enemigo );
 int rand_lim(int limit);
 struct Enemigo{
     int x1,y1;
@@ -36,6 +37,7 @@ struct Enemigo{
     SDL_Texture* bmpTexture; //To hold bmp image
     bool flag;
     MisilEnemigo *misil;
+
 };
 
 struct  MisilEnemigo{
@@ -43,6 +45,7 @@ struct  MisilEnemigo{
     int x2,y2;
     int vel_x, vel_y;
     bool activo;
+    bool colisionMuro;
 };
 
 #endif //INTERFAZ_ENEMIGO_H

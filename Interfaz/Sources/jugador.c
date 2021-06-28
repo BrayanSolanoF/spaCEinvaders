@@ -12,6 +12,7 @@ void pintar_Nave(Nave *minave, SDL_Rect targetRect,  SDL_Texture *bmpTexture, SD
     nave = minave;
     while(ixMisil!= NULL){
         MisilAvanza(ixMisil, enemigo,muro);
+
         if(ixMisil->flag== false){
             SDL_RenderDrawLine(gRenderer, ixMisil->x1, ixMisil->y1,ixMisil->x2,
                                ixMisil->y2);
@@ -19,6 +20,18 @@ void pintar_Nave(Nave *minave, SDL_Rect targetRect,  SDL_Texture *bmpTexture, SD
 
         ixMisil=ixMisil->siguiente;
     }
+    Enemigo *enemigoAux=enemigo;
+    while(enemigoAux != NULL){
+        if(enemigoAux->misil != NULL)
+            if(enemigoAux->misil->activo==true){
+                //printf("el misil era valido \n");
+                //colisionConMuro(enemigoAux, muro);
+                colisionConEnemigo(nave,enemigoAux);
+            }
+        enemigoAux= enemigoAux->siguiente;
+    }
+    //printf("salio del while \n");
+    free(enemigoAux);
     //--------------------------PINTAR NAVE---------------------
     //Define el rectángulo sobre el que se va a pintar el jugador
     targetRect.w = NAVE_WIDTH;
@@ -61,6 +74,34 @@ void disparar(){
         ixMisil->vel_y=-MISIL_VEL;
         ixMisil->siguiente=NULL;
         ixMisil->flag=false;
+    }
+}
+
+void colisionConEnemigo(Nave *nave, Enemigo *enemigo){
+    //printf("entraaaa \n");
+    MisilEnemigo *misilEnemigo= enemigo->misil;
+
+    if((misilEnemigo->y2 > nave->y1) && (misilEnemigo->y2 < (nave->y1+NAVE_HEIGHT/4))
+    && (misilEnemigo->x1 > nave->x1) && (misilEnemigo->x1 < (nave->x1 + NAVE_WIDTH)) ) {
+        //BAJAR VIDAS DEL JUGADOR
+        nave->vidas--;
+        //printf("Vidas del jugador: %d \n", nave->vidas);
+    }
+}
+
+void colisionConMuro(Enemigo *enemigo, Muro *muro){
+    Muro *muroAux= muro;
+    MisilEnemigo *misilAux= enemigo->misil;
+    //printf("entro a colision con enemigo\n");
+    while(muroAux!=NULL&&misilAux!=NULL){
+        if(misilAux->activo==true){
+            if((muroAux->x1<misilAux->x1)&&((muroAux->x1+MURO_WIDTH)>misilAux->x1) &&
+                    (muroAux->y1<misilAux->y2)&&((muroAux->y1+MURO_HEIGHT) > misilAux->y2)){
+                misilAux->activo=false;
+                printf("misil ahora falso \n");
+            }
+        }
+        muroAux=muroAux->siguiente;
     }
 }
 
