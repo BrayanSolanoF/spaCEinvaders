@@ -9,7 +9,7 @@ include_directories(${SDL2_INCLUDE_DIR})
 link_directories(${SDL2_LIB_DIR})
 link_libraries(ws2_32 wsock32)
 add_executable(Interfaz main.c Headers/enemigo.h Headers/jugador.h Headers/misil.h Headers/muro.h Sources/enemigo.c
-        Sources/jugador.c Sources/misil.c Sources/muro.c main.c socket.c socket.h)
+        Sources/jugador.c Sources/misil.c Sources/muro.c main.c socket.c socket.h Headers/constantes.h)
 
 TARGET_LINK_LIBRARIES(Interfaz
         SDL2main SDL2

@@ -13,22 +13,6 @@
 
 
 
-//Definiciones de globales y macros
-//const int SCREEN_WIDTH = 640;
-//const int SCREEN_HEIGHT = 480;
-//#define SCREEN_WIDTH 800
-//#define SCREEN_HEIGHT 600
-#define MS 20
-//#define NAVE_WIDTH 50
-//#define NAVE_HEIGHT 45
-//#define NAVE_VEL 10
-
-//#define MISIL_LEN 5
-//#define MISIL_VEL 10
-//#define ENEMIGO_WIDTH 30
-//#define ENEMIGO_HEIGHT 30
-//#define ENEMIGO_VEL 3
-
 unsigned char *keys;
 SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer= NULL;
@@ -38,8 +22,12 @@ bool init(); //inicializa pantalla
 void close(); //cierra los punteros de la pantalla
 
 
-
-
+/**
+ * Inicializa la ventana de juego del programa, así como los punteros a objetos qye van a permitir
+ * visualizar la interfaz.
+ * @return true en caso de que la inicializacion se diera correctamente o false en caso de algun problema
+ * inicializando el programa.
+ */
 bool init()
 {
     //Initialization flag
@@ -63,6 +51,9 @@ bool init()
     }
     return success;
 }
+/**
+ * Se encarga de destruir la ventana de juego y liberar los punteros de los objetos creados para mantener la ventana abierta
+ */
 void close()
 {
     //Destroy window
@@ -74,7 +65,10 @@ void close()
     SDL_Quit();
 }
 
-
+/**
+ * Funcion que contiene toda la inicializacion del juego.
+ * @return 0 en caso de exito u otro numero en caso de que el desarrollo del programa tenga algun problema
+ */
 int main( int argc, char* args[] )
 {
     //Start up SDL and create window/*
@@ -263,8 +257,6 @@ int main( int argc, char* args[] )
             free(enemigoAux);
             mi_nave->puntos=counter_Marcador*30;
 
-            //printf("Marcador de jugador %d \n", mi_nave->puntos);
-
             // GAME OVER
             if(mi_nave->vidas==0){
                 SDL_Rect rectangulo;
@@ -296,7 +288,7 @@ int main( int argc, char* args[] )
 
                     SDL_RenderCopy(gRenderer, mytexture, NULL, &rectangulo); //Se pinta la imagen
                     SDL_RenderPresent(gRenderer);
-                    SDL_Delay(700);
+                    SDL_Delay(800);
                 }
 
                 quit=true;

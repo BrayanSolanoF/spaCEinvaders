@@ -13,14 +13,27 @@
 #include <string.h>
 #include "enemigo.h"
 #include "muro.h"
+#include "constantes.h"
 
-#define MISIL_LEN 5
-#define MISIL_VEL 10
-
-typedef struct Misil Misil;
-
+typedef struct Misil Misil; /** Estructura que contiene las caracteristicas del misil del jugador */
+/**
+ * Funcion que actualiza la posicion de cada disparo
+ * @param misil el misil creado
+ * @param enemigo el puntero al primer enemigo
+ * @param muro puntero al primer muro
+ */
 void MisilAvanza(Misil *misil, Enemigo *enemigo, Muro *muro);
+/**
+ * Borra un misil si este se sale de los limites de la pantalla
+ * @param misiles recibe el puntero al primer misil para recorrer todos y actualizar su estado
+ */
 void borrar_misil(Misil *misiles);
+/**
+ * Funcion que detecta colisiones entre balas del jugador y el enemigo o el muro
+ * @param misil puntero al primer misil
+ * @param enemigo puntero al primer enemigo
+ * @param muro puntero al primer muro
+ */
 void collision(Misil *misil, Enemigo *enemigo, Muro *muro);
 
 struct Misil{
