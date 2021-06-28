@@ -234,11 +234,11 @@ int main( int argc, char* args[] )
             rectanguloVidas.x = 10;
             rectanguloVidas.y = 0;
             if(mi_nave->vidas==3){
-                //imageVidas = SDL_LoadBMP("../images/3vidas.bmp");
+                imageVidas = SDL_LoadBMP("../images/3vida.bmp");
             }else if(mi_nave->vidas==2){
-                //imageVidas = SDL_LoadBMP("../images/2vidas.bmp");
+                imageVidas = SDL_LoadBMP("../images/2vida.bmp");
             }else if(mi_nave->vidas==1){
-                //imageVidas = SDL_LoadBMP("../images/1vida.bmp");
+                imageVidas = SDL_LoadBMP("../images/1vida.bmp");
             }
 
             textureVidas = SDL_CreateTextureFromSurface(gRenderer, imageVidas);
