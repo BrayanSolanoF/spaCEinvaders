@@ -132,11 +132,11 @@ int main( int argc, char* args[] )
 
         SDL_Surface* muroSurface = NULL; //To hold bmp image
         SDL_Texture* muroTexture = NULL; //To hold bmp image
-
         muroSurface = SDL_LoadBMP(muro->path);
         //Convert surface to texture for rendering
         muroTexture = SDL_CreateTextureFromSurface(gRenderer, muroSurface);
         SDL_FreeSurface(muroSurface);
+
 
         int flag= 1;
 
@@ -296,7 +296,7 @@ int main( int argc, char* args[] )
 
                     SDL_RenderCopy(gRenderer, mytexture, NULL, &rectangulo); //Se pinta la imagen
                     SDL_RenderPresent(gRenderer);
-                    SDL_Delay(600);
+                    SDL_Delay(700);
                 }
 
                 quit=true;
@@ -305,7 +305,7 @@ int main( int argc, char* args[] )
     }
 
     //Free resources and close SDL
-    //enviar("192.168.50.254", 7000, "5");
+    enviar("192.168.50.254", 7000, "5");
     close();
 
     return 0;
