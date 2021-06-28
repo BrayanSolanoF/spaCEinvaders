@@ -142,15 +142,12 @@ int main( int argc, char* args[] )
 
         // EL JUEGO SE VA A CREAR
 
-        //While application is running
+
 
         // ENVIAR PETICION CUANDO SE ELIMINA ENEMIGO         key    jugador
         enviar("192.168.50.254", 7000, "1");
 
-        //enviar("192.168.50.254", 7000, "EliminaEnemigo");
-        //enviar("192.168.50.254", 7000, "EliminaMuro");
-        //enviar("192.168.50.254", 7000, "PierdeVida");
-
+        //Mientras la aplicacion esta corriendo
         while( !quit ) {
             //VENTANA DE INICIO
             if(flag==1){
